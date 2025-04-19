@@ -1,0 +1,38 @@
+<div class="bg-brand-gray p-2">
+  <section id="best-sellers" class="best-sellers-section px-6 py-10 bg-brand-gray">
+    <h2 class="available-heading text-3xl font-extrabold mb-8 text-brand-cyan w-4/5 mx-auto">
+      Best Sellers
+    </h2>
+    <app-best-sellers></app-best-sellers>
+  </section>
+</div>
+
+<div class="bg-brand-gray p-2">
+  <app-product-filter (filterChange)="onFilter($event)"></app-product-filter>
+</div>
+
+<section id="products" class="px-6 py-10 bg-brand-gray">
+  <h2 class="available-heading text-3xl font-extrabold mb-8 text-brand-cyan w-4/5 mx-auto">
+    Products
+  </h2>
+  <div class="available-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-4/5 mx-auto">
+    <app-product-card
+      *ngFor="let p of filtered"
+      [product]="p"
+      class="product-card"
+    ></app-product-card>
+  </div>
+</section>
+
+<section id="coming-soon" class="coming-soon-section px-6 py-10 bg-brand-gray">
+  <h2 class="coming-soon-heading text-3xl font-extrabold mb-8 text-brand-red w-4/5 mx-auto">
+    Coming Soon
+  </h2>
+  <div class="coming-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-4/5 mx-auto">
+    <app-product-card
+      *ngFor="let p of comingSoon"
+      [product]="p"
+      class="product-card opacity-90"
+    ></app-product-card>
+  </div>
+</section>

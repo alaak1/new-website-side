@@ -1,0 +1,59 @@
+<nav class="bg-brand-gray text-brand-white px-4 py-3 flex items-center justify-between lg:hidden">
+  <!-- Logo -->
+  <a routerLink="/" class="flex items-center">
+    <img src="assets/images/kalasino-logo.png" alt="Kalasino" class="h-24 w-auto" />
+  </a>
+  <!-- Burger -->
+  <button (click)="mobileOpen = !mobileOpen" class="focus:outline-none">
+    <svg *ngIf="!mobileOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+         viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"/>
+    </svg>
+    <svg *ngIf="mobileOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+         viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"/>
+    </svg>
+  </button>
+</nav>
+
+<!-- Mobile menu (slide‑down) -->
+<div *ngIf="mobileOpen" class="lg:hidden bg-brand-gray-dark border-t border-brand-gray px-4 py-4 space-y-2">
+  <a routerLink="/" routerLinkActive="bg-brand-cyan text-brand-gray" [routerLinkActiveOptions]="{exact:true}"
+     class="block px-4 py-2 rounded">Home</a>
+  <a routerLink="/products" routerLinkActive="bg-brand-cyan text-brand-gray"
+     class="block px-4 py-2 rounded">Products</a>
+  <a routerLink="/cart" routerLinkActive="bg-brand-cyan text-brand-gray"
+     class="block px-4 py-2 rounded">Cart</a>
+  <a routerLink="/login" routerLinkActive="bg-brand-cyan text-brand-gray"
+     class="block px-4 py-2 rounded">Log In</a>
+  <a routerLink="/signup" routerLinkActive="bg-brand-cyan text-brand-gray"
+     class="block px-4 py-2 rounded">Sign Up</a>
+</div>
+
+<!-- Desktop nav -->
+<nav class="hidden lg:flex bg-brand-gray text-brand-white px-6 py-4 items-center justify-between">
+  <!-- Logo -->
+  <a routerLink="/" class="flex items-center">
+    <img src="assets/images/kalasino-logo.png" alt="Kalasino" class="h-32 w-auto" />
+  </a>
+
+  <!-- Main nav -->
+  <ul class="flex space-x-4">
+    <li><a routerLink="/" routerLinkActive="bg-brand-cyan text-brand-gray" [routerLinkActiveOptions]="{exact:true}"
+           class="px-4 py-2 rounded transition">Home</a></li>
+    <li><a routerLink="/products" routerLinkActive="bg-brand-cyan text-brand-gray"
+           class="px-4 py-2 rounded transition">Products</a></li>
+    <li><a routerLink="/cart" routerLinkActive="bg-brand-cyan text-brand-gray"
+           class="px-4 py-2 rounded transition">Cart</a></li>
+  </ul>
+
+  <!-- Auth nav -->
+  <ul class="flex space-x-4">
+    <li><a routerLink="/login" routerLinkActive="bg-brand-cyan text-brand-gray"
+           class="px-4 py-2 rounded transition">Log In</a></li>
+    <li><a routerLink="/signup" routerLinkActive="bg-brand-cyan text-brand-gray"
+           class="px-4 py-2 rounded transition">Sign Up</a></li>
+  </ul>
+</nav>

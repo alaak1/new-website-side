@@ -1,0 +1,37 @@
+/* Scale up the active slide’s card */
+.best-sellers-swiper ::part(slide-active) .card {
+  transform: scale(1.05);
+}
+
+/* Adjust arrow colors */
+.best-sellers-swiper ::part(navigation-button-next),
+.best-sellers-swiper ::part(navigation-button-prev) {
+  color: #00D1FF; /* brand-cyan */
+}
+
+/* Make the swiper container a positioning context */
+.best-sellers-swiper {
+  position: relative;
+}
+
+/* Move the pagination (progress bar) to the bottom */
+.best-sellers-swiper ::part(pagination) {
+  position: absolute;
+  bottom: 0;       /* cancel any top positioning */
+  left: 0;
+  width: 100%;
+  padding: 0;      /* remove default padding */
+}
+
+/* Thin out the track and give it a faint backdrop */
+.best-sellers-swiper ::part(pagination-progressbar) {
+  height: 4px;                     /* bar thickness */
+  background: rgba(255,255,255,0.2);
+}
+
+/* Bright fill matching your brand */
+.best-sellers-swiper ::part(pagination-progressbar-fill) {
+  background: #00D1FF;
+}
+
+

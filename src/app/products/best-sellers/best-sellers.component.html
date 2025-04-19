@@ -1,0 +1,35 @@
+<swiper-container
+  class="best-sellers-swiper max-w-[280px] lg:max-w-6xl mx-auto"
+  effect="cards"
+  grab-cursor="true"
+  navigation="true"
+  slides-per-view="1"
+  loop="true"
+
+autoplay="true"
+autoplay-delay="3000"
+autoplay-disable-on-interaction="false"
+
+pagination="true"
+pagination-type="bullets"
+>
+  <swiper-slide *ngFor="let p of best">
+    <a [routerLink]="['/products', p.id]" class="block no-underline">
+      <div class="relative h-80 lg:h-[550px] w-full rounded-2xl overflow-hidden">
+        <!-- Background Image -->
+        <div
+          class="absolute inset-0 bg-contain bg-center "
+          [ngStyle]="{ 'background-image': 'url(' + p.images[0] + ')' }"
+        ></div>
+
+        <!-- Overlay with blur and text -->
+        <div
+          class="absolute inset-0 bg-black/30  flex flex-col items-center justify-center text-center px-4"
+        >
+          <h3 class="text-2xl font-extrabold backdrop-blur-sm text-brand-white">{{ p.name }}</h3>
+          <span class="mt-2 text-xl font-extrabold backdrop-blur-sm text-brand-white">${{ p.price }}</span>
+        </div>
+      </div>
+    </a>
+  </swiper-slide>
+</swiper-container>

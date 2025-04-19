@@ -1,0 +1,35 @@
+<main class="bg-brand-gray-light text-brand-white">
+
+  <!-- Only Palestine section now -->
+  <section
+    id="palestine"
+    class="about-section container mx-auto px-6 pt-2 pb-2 w-4/5"
+  >
+    <!-- Title -->
+    <h1 class="text-5xl lg:text-6xl font-extrabold text-center text-brand-cyan pb-4">
+      About Palestine
+    </h1>
+
+    <!-- Stats with bright borders -->
+    <div class="border-2 border-brand-cyan divide-y divide-brand-cyan rounded-lg overflow-hidden">
+      <div
+        *ngFor="let s of sections[0].stats"
+        class="stat-item flex items-start justify-end p-6"
+      >
+        <!-- Label -->
+        <div class="stat-label w-1/2 flex justify-end uppercase text-xs tracking-widest text-brand-cyan">
+          {{ s.label }}
+        </div>
+
+        <!-- Content -->
+        <div class="stat-content flex justify-end w-1/2 overflow-hidden">
+          <h2 class="text-3xl lg:text-8xl font-black text-brand-white">
+            {{ s.value }}
+          </h2>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer (initially hidden) -->
+</main>

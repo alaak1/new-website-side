@@ -1,0 +1,17 @@
+/* Position pagination bullets at the bottom */
+.best-detail-swiper {
+  position: relative;
+}
+
+.best-detail-swiper ::part(pagination) {
+  bottom: 1rem;
+  top: auto;
+}
+
+/* Make bullets neon themed */
+.best-detail-swiper ::part(pagination-bullet) {
+  background: rgba(255,255,255,0.3);
+}
+.best-detail-swiper ::part(pagination-bullet-active) {
+  background: #00D1FF;
+}

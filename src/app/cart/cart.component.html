@@ -1,0 +1,101 @@
+<div class=" mx-auto bg-brand-gray-dark px-6 py-10">
+  <!-- Step indicator (desktop only) -->
+  <div class="hidden lg:flex bg-brand-gray-light rounded-xl p-6 mb-8 items-center">
+    <!-- Cart -->
+    <div class="flex items-center space-x-2">
+      <span class="p-3 bg-brand-gray rounded-full text-brand-white">
+        🛒
+      </span>
+      <span class="font-medium text-brand-white">Cart</span>
+    </div>
+    <div class="flex-1 border-t border-dashed border-gray-500 mx-4"></div>
+    <!-- Checkout -->
+    <div class="flex items-center space-x-2 opacity-50">
+      <span class="p-3 bg-brand-gray rounded-full text-gray-400">
+        💳
+      </span>
+      <span class="font-medium text-gray-400">Checkout</span>
+    </div>
+    <div class="flex-1 border-t border-dashed border-gray-500 mx-4"></div>
+    <!-- Order -->
+    <div class="flex items-center space-x-2 opacity-50">
+      <span class="p-3 bg-brand-gray rounded-full text-gray-400">
+        📦
+      </span>
+      <span class="font-medium text-gray-400">Order</span>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <!-- Items List -->
+    <div class="lg:col-span-2 bg-brand-gray-light p-6 rounded-xl space-y-4">
+      <div *ngFor="let item of cartItems" class="flex items-center space-x-4 pb-4 border-b border-gray-700">
+        <img [src]="item.image" [alt]="item.name"
+             class="h-16 w-16 rounded-lg object-cover"/>
+
+        <div class="flex-1">
+          <h3 class="text-lg font-semibold text-brand-white">{{ item.name }}</h3>
+          <p class="text-sm text-gray-400">
+            Rate: ${{ item.rate }} / {{ item.unit }}
+          </p>
+        </div>
+
+        <div class="flex items-center bg-brand-gray rounded-lg overflow-hidden">
+          <button (click)="decrease(item)"
+                  class="px-3 py-1 hover:bg-brand-gray-dark transition">–</button>
+          <span class="px-4 text-brand-white">{{ item.quantity }}</span>
+          <button (click)="increase(item)"
+                  class="px-3 py-1 hover:bg-brand-gray-dark transition">+</button>
+        </div>
+
+        <button (click)="remove(item)"
+                class="text-brand-red hover:text-red-400 transition">
+          🗑️
+        </button>
+
+        <span class="ml-4 font-bold text-brand-white">
+          ${{ item.total }}
+        </span>
+      </div>
+    </div>
+
+    <!-- Order Summary -->
+    <div class="bg-brand-gray-light p-6 rounded-xl">
+      <h2 class="text-xl font-semibold text-brand-white mb-6">Order Summary</h2>
+
+      <div class="space-y-2 mb-6 text-sm text-gray-400">
+        <div class="flex justify-between">
+          <span>Subtotal</span><span>${{ subtotal }}</span>
+        </div>
+        <div class="flex justify-between">
+          <span>V.A.T. (5%)</span><span>${{ vat }}</span>
+        </div>
+      </div>
+
+      <div class="mb-6">
+        <label class="block text-sm mb-1">Add a coupon</label>
+        <div class="flex">
+          <input [(ngModel)]="couponCode"
+                 type="text"
+                 placeholder="Enter your code"
+                 class="flex-1 px-4 py-2 bg-brand-gray rounded-l-lg text-brand-white placeholder-gray-500 focus:outline-none"/>
+          <button (click)="applyCoupon()"
+                  class="px-4 py-2 bg-brand-cyan text-brand-gray rounded-r-lg hover:bg-brand-blue transition">
+            ➔
+          </button>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-700 pt-4 mb-6 flex justify-between items-center">
+        <span class="text-lg font-semibold text-brand-white">Total</span>
+        <span class="text-xl font-bold text-brand-white">${{ total }}</span>
+      </div>
+
+      <button
+        class="w-full py-3 bg-brand-cyan text-brand-gray font-semibold rounded-lg hover:bg-brand-blue transition"
+      >
+        Proceed to Checkout
+      </button>
+    </div>
+  </div>
+</div>

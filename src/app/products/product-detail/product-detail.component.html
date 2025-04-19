@@ -1,0 +1,122 @@
+<div *ngIf="product" class="px-6 py-10 bg-brand-gray text-brand-white min-h-screen">
+  <div class="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10">
+    <!-- Carousel -->
+    <div>
+      <swiper-container
+        class="best-detail-swiper w-[90%] h-[90%] rounded-2xl overflow-hidden"
+        effect="cube"
+        slides-per-view="1"
+        loop="true"
+        pagination="true"
+        pagination-type="bullets"
+      >
+        <swiper-slide *ngFor="let img of carouselImages">
+          <img
+            [src]="img"
+            [alt]="product.name"
+            class="object-contain w-full h-full bg-black/20"
+          />
+        </swiper-slide>
+      </swiper-container>
+    </div>
+
+    <!-- Details + controls -->
+    <div class="flex flex-col space-y-10">
+      <h1 class="text-4xl font-extrabold text-white">{{ product.name }}</h1>
+      <p class="text-gray-300">{{ product.description }}</p>
+
+      <!-- Price -->
+      <div class="flex items-baseline space-x-4">
+        <span class="text-3xl font-extrabold text-white">${{ product.price }}</span>
+        <span *ngIf="false" class="line-through text-gray-500">$299.00</span>
+      </div>
+
+      <!-- Size selector -->
+      <div>
+        <label class="block text-sm mb-2">Size</label>
+        <div class="flex space-x-2">
+          <button
+            *ngFor="let s of sizes"
+            (click)="selectedSize = s"
+            [class.bg-brand-cyan]="selectedSize === s"
+            [class.text-brand-gray]="selectedSize === s"
+            [class.bg-brand-input]="selectedSize !== s"
+            [class.text-brand-white]="selectedSize !== s"
+            class="px-4 py-2 rounded-full border border-brand-cyan transition"
+          >
+            {{ s }}
+          </button>
+        </div>
+      </div>
+      <!-- Quantity + Add to Cart -->
+      <div class="flex items-center space-x-4">
+        <div class="flex items-center bg-brand-input rounded-lg overflow-hidden">
+          <button (click)="decrease()"
+                  class="px-3 py-2 hover:bg-brand-gray-dark transition">–</button>
+          <span class="px-4">{{ quantity }}</span>
+          <button (click)="increase()"
+                  class="px-3 py-2 hover:bg-brand-gray-dark transition">+</button>
+        </div>
+        <button
+          (click)="addToCart()"
+          class="px-6 py-2 rounded-full bg-brand-cyan text-brand-gray hover:bg-brand-blue transition"
+        >
+          Add to Cart
+        </button>
+      </div>
+
+      <!-- Share Links -->
+      <div class="flex items-center space-x-4">
+        <span class="text-xl">Share:</span>
+        <button (click)="share('facebook')" class="hover:text-brand-cyan">
+          <!-- Facebook SVG -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+            <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
+          </svg>
+        </button>
+        <button (click)="share('twitter')" class="hover:text-brand-cyan">
+          <!-- Twitter SVG -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-twitter-x" viewBox="0 0 16 16">
+            <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
+          </svg>
+        </button>
+        <button (click)="share('email')" class="hover:text-brand-cyan">
+          <!-- Email SVG -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-envelope-at" viewBox="0 0 16 16">
+            <path d="M2 2a2 2 0 0 0-2 2v8.01A2 2 0 0 0 2 14h5.5a.5.5 0 0 0 0-1H2a1 1 0 0 1-.966-.741l5.64-3.471L8 9.583l7-4.2V8.5a.5.5 0 0 0 1 0V4a2 2 0 0 0-2-2zm3.708 6.208L1 11.105V5.383zM1 4.217V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v.217l-7 4.2z"/>
+            <path d="M14.247 14.269c1.01 0 1.587-.857 1.587-2.025v-.21C15.834 10.43 14.64 9 12.52 9h-.035C10.42 9 9 10.36 9 12.432v.214C9 14.82 10.438 16 12.358 16h.044c.594 0 1.018-.074 1.237-.175v-.73c-.245.11-.673.18-1.18.18h-.044c-1.334 0-2.571-.788-2.571-2.655v-.157c0-1.657 1.058-2.724 2.64-2.724h.04c1.535 0 2.484 1.05 2.484 2.326v.118c0 .975-.324 1.39-.639 1.39-.232 0-.41-.148-.41-.42v-2.19h-.906v.569h-.03c-.084-.298-.368-.63-.954-.63-.778 0-1.259.555-1.259 1.4v.528c0 .892.49 1.434 1.26 1.434.471 0 .896-.227 1.014-.643h.043c.118.42.617.648 1.12.648m-2.453-1.588v-.227c0-.546.227-.791.573-.791.297 0 .572.192.572.708v.367c0 .573-.253.744-.564.744-.354 0-.581-.215-.581-.8Z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Specifications -->
+  <section class="mt-16 bg-brand-input p-6 rounded-lg">
+    <h2 class="text-2xl font-bold text-brand-white mb-4">Product Specs</h2>
+    <table class="w-full text-sm text-left text-gray-300">
+      <tbody>
+      <tr *ngFor="let s of specs" class="border-b border-gray-600">
+        <th class="py-2 pr-4 font-medium">{{ s.key }}</th>
+        <td class="py-2">{{ s.value }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Related Products -->
+  <section class="mt-16">
+    <h2 class="text-2xl font-extrabold text-brand-white mb-6">Related Products</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <app-product-card
+        *ngFor="let rp of relatedProducts"
+        [product]="rp"
+        class="h-full"
+      ></app-product-card>
+    </div>
+  </section>
+</div>
+
+<ng-container *ngIf="!product">
+  <p class="text-center py-20 text-brand-white">Product not found.</p>
+</ng-container>

@@ -1,0 +1,5 @@
+/* src/styles.css or your global Tailwind overrides */
+.product-card:hover {
+  /* GSAP will handle this, but you can add a default transition */
+  transition: transform 0.2s ease-out;
+}

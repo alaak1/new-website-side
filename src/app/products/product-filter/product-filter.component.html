@@ -1,0 +1,45 @@
+<!-- src/app/products/product-filter/product-filter.component.html -->
+<form
+  [formGroup]="form"
+  class="flex items-center bg-brand-input rounded-full p-2 space-x-2 w-4/5 justify-center mx-auto"
+>
+  <!-- Search -->
+  <div class="flex-1 relative">
+    <svg
+      class="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-500"
+      fill="none" stroke="currentColor" viewBox="0 0 24 24"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M21 21l-6-6m2-5a7 7 0 1 1-14 0 7 7 0 0 1 14 0z"/>
+    </svg>
+    <input
+      type="text"
+      formControlName="search"
+      placeholder="Search products..."
+      class="w-full pl-10 pr-4 py-2 bg-transparent text-brand-white placeholder-gray-500 focus:outline-none"
+    />
+  </div>
+
+  <!-- Divider -->
+  <div class="h-6 w-px bg-gray-600"></div>
+
+  <!-- Cooling Filter -->
+  <select
+    formControlName="coolingType"
+    class="bg-brand-input text-brand-white pr-8 pl-2 focus:outline-none"
+  >
+    <option value="all">All</option>
+    <option value="fan">Fan‑cooled</option>
+    <option value="none">Non‑fan</option>
+  </select>
+
+  <!-- Filter Icon -->
+  <button type="button" class="p-2 rounded-full hover:bg-brand-cyan/20">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-brand-cyan"
+         fill="none" viewBox="0 0 24 24" stroke="currentColor"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M3 4a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v2l-6 5v5l-4 2v-7L3 6V4z"/>
+    </svg>
+  </button>
+</form>
